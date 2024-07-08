@@ -1,0 +1,15 @@
+SELECT id, title, description FROM tasks WHERE user_id=1;
+SELECT * from tasks WHERE status_id=1;
+UPDATE tasks SET status_id = 2 WHERE id = 14;
+SELECT id, fullname FROM users WHERE id NOT IN (SELECT user_id FROM tasks);
+INSERT INTO tasks (title, description, status_id, user_id) VALUES ('STUFF', 'DO SOME STUFF', 1, 4);
+SELECT id, title FROM tasks WHERE status_id != 3;
+DELETE FROM tasks WHERE id = 4;
+SELECT * FROM users WHERE email LIKE '%yahoo.com';
+UPDATE users SET fullname='Bohdan Pokotylo' WHERE id=5;
+SELECT status_id, COUNT(status_id) AS total_tasks FROM tasks GROUP BY status_id;
+SELECT * FROM tasks WHERE user_id in (SELECT id FROM users WHERE email LIKE '%yahoo.com');
+SELECT t.id, t.title, u.fullname AS user FROM tasks AS t INNER JOIN users AS u ON t.user_id = u.id where u.email like '%yahoo.com';
+SELECT id, title FROM tasks WHERE description='';
+SELECT u.fullname, t.title FROM users AS u INNER JOIN tasks AS t ON t.status_id = 2 AND t.user_id = u.id;
+select u.fullname, COUNT(t.user_id) as total_tasks from users as u left join tasks as t on t.user_id = u.id group by u.fullname;
